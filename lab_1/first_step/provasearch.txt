@@ -1,0 +1,15 @@
+non commento
+
+/* Commento 1 */
+
+non commento
+
+/* Commento 2 */
+/* */ /* Commento 3 */
+
+other
+
+/* Ultimo commento */
+
+
+something
