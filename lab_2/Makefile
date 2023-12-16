@@ -72,13 +72,12 @@ build: verify ## Build Parser.class executable
 .PHONY: build
 
 execute: ## Execute java Parser
+execute: build
 	@cd ${ROOT}build/${FILE}/; java Parser
 
 .PHONY: execute
 
 
-test:
-	$(YACC)
 
 ##
 ##

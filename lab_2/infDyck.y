@@ -1,13 +1,10 @@
 %{
-import java.io.*;
+  import java.io.*;
 %}
 
 %token OPEN_PAREN;
 %token CLOSE_PAREN;
-%token OPEN_BRACKET;
-%token CLOSE_BRACKET;
 %token <sval> SKIP;
-%token COLONTEXT
 
 %start s
 
@@ -15,20 +12,15 @@ import java.io.*;
 
 parens  : OPEN_PAREN s CLOSE_PAREN
         | OPEN_PAREN CLOSE_PAREN
-        | '[' s ']'
-        | OPEN_BRACKET s CLOSE_BRACKET
-        | OPEN_BRACKET CLOSE_BRACKET;
 
-exp     : parens;
+exp     : parens
 
 exps    : exp SKIP { System.out.println("S: "+$2); }
-        | exp;
+        | exp
 
 s       : SKIP { System.out.println("txt: "+$1); }
         | exps
-        | s exps;
-
-text    : COLONTEXT;
+        | s exps
 
 %%
 
