@@ -32,6 +32,8 @@ skip        { return(Parser.SKIP); }
 then        { return(Parser.THEN); }
 while       { return(Parser.WHILE); }
 write       { return(Parser.WRITE); }
+false       { yyparser.yylval = new ParserVal(0); return(Parser.NUMBER); }
+true        { yyparser.yylval = new ParserVal(1); return(Parser.NUMBER); }
 {ID}        { yyparser.yylval = new ParserVal(Integer.parseInt(yytext().substring(1))); return(Parser.IDENTIFIER); }
 [ \r\t\n]+  { }
 "//".*      { }
