@@ -26,12 +26,14 @@ END         { return(Parser.END); }
 done        { return(Parser.DONE); }
 fi          { return(Parser.FI); }
 if          { return(Parser.IF); }
+and         { return(Parser.AND); }
 BEGIN       { return(Parser.BEGIN); }
 read        { return(Parser.READ); }
 skip        { return(Parser.SKIP); }
 then        { return(Parser.THEN); }
 while       { return(Parser.WHILE); }
 write       { return(Parser.WRITE); }
+dual        { return(Parser.DUAL); }
 false       { yyparser.yylval = new ParserVal(0); return(Parser.NUMBER); }
 true        { yyparser.yylval = new ParserVal(1); return(Parser.NUMBER); }
 {ID}        { yyparser.yylval = new ParserVal(Integer.parseInt(yytext().substring(1))); return(Parser.IDENTIFIER); }

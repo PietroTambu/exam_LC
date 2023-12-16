@@ -9,8 +9,8 @@ TOKENS
 %token <ival> NUMBER /* Simple integer */
 %token <ival> IDENTIFIER /* Simple identifier */
 %token <ival> IF WHILE /* For backpatching labels */
-%token SKIP THEN ELSE FI DO END DONE
-%token READ WRITE BEGIN
+%token SKIP THEN ELSE FI DO END DONE AND
+%token READ WRITE BEGIN DUAL
 %token ASSGNOP
 
 /*=========================================================================
@@ -25,7 +25,7 @@ GRAMMAR RULES for the Simple language
 %type <ival> ifThen
 
 %%
-program     : BEGIN { gen_code( I.DATA, 10 );mark_blank(); }
+program     : BEGIN { gen_code( I.DATA, 10 ); mark_blank(); }
               commands
               END { gen_code( I.HALT, -99 ); mark_blank(); }
             ;
@@ -42,6 +42,13 @@ command     : SKIP
             | READ  IDENTIFIER { gen_code( I.READ_INT,  -99 ); gen_code( I.STORE,  $2 ); }
             | WRITE exp        { gen_code( I.WRITE_INT, -99  ); }
             | IDENTIFIER ASSGNOP exp { gen_code( I.STORE, $1 ); }
+            | IDENTIFIER IDENTIFIER DUAL exp {
+                gen_code( I.STORE, $1 );
+                gen_code( I.LD_VAR, $1 );
+                gen_code( I.STORE, $2 );
+              }
+            | ifThen
+              FI { back_patch( $1, I.JMP_FALSE, gen_label() ); }
             | ifThen
               ELSE { $1 += 1000*reserve_loc(); mark_blank(); back_patch( $1%1000, I.JMP_FALSE, gen_label() ); }
               commands
@@ -62,6 +69,7 @@ exp         : NUMBER { gen_code( I.LD_INT, $1 ); }
             | exp '-' exp { gen_code( I.SUB, -99 ); }
             | exp '*' exp { gen_code( I.MULT, -99 ); }
             | exp '/' exp { gen_code( I.DIV, -99 ); }
+            | exp AND exp { gen_code( I.MULT, -99); }
             | '(' exp ')'
             ;
 
