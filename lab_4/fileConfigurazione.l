@@ -1,3 +1,9 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Author: Pietro Tamburini 2023                                           *
+ *                                                                         *
+ * GitHub repository: https://github.com/PietroTambu/exam_LC               *
+ *                                                                         *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 %%
 
 %byaccj
