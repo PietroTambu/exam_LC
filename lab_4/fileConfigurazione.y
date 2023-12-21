@@ -26,7 +26,7 @@ properties  : property line { $$ = $1 + $2; }
             | property line properties { $$ = $1 + $2 + $3; }
             ;
 
-property    : PROPERTY_NAME PROPERTY_SEPARATOR PROPERTY_VALUE { $$ = $1.trim() + "=" + $3; }
+property    : PROPERTY_NAME PROPERTY_SEPARATOR PROPERTY_VALUE { $$ = $1.trim() + " = " + $3; }
             ;
 
 %%

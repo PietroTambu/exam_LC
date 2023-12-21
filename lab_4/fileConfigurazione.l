@@ -1,4 +1,3 @@
-
 %%
 
 %byaccj
@@ -14,7 +13,7 @@
 
 %x IN_GROUP IN_PROPERTY
 
-NL = \r\n|\r|\n
+NL  = \n | \r | \r\n
 
 GROUP_NAME = [a-zA-Z0-9\-_]+
 GROUP_OPEN = (:[ \t]*\{)
