@@ -1,0 +1,4 @@
+nome_gruppo_2: {
+    nome_proprietà_x: valore_proprietà_x
+    nome_proprietà_y: valore_proprietà_y
+};
