@@ -21,20 +21,42 @@ GROUP_CLOSE = "\};"
 
 PROPERTY_NAME = [a-zA-Z0-9\-_ \t]+
 PROPERTY_SEPARATOR = (:[ \t]*)
-PROPERTY_VALUE = (.*)
+PROPERTY_VALUE = [^;\n]+
 
 %%
 
 <YYINITIAL,IN_GROUP,IN_PROPERTY>{NL} { return Parser.NL; }
 
-{GROUP_NAME} { yyparser.yylval = new ParserVal(yytext()); return Parser.GROUP_NAME; }
+{GROUP_NAME} { 
+    yyparser.yylval = new ParserVal(yytext()); 
+    return Parser.GROUP_NAME; 
+}
 
-{GROUP_OPEN} { yybegin(IN_GROUP); return Parser.GROUP_OPEN; }
+{GROUP_OPEN} { 
+    yybegin(IN_GROUP); 
+    return Parser.GROUP_OPEN; 
+}
 
-<IN_GROUP>{GROUP_CLOSE} { yybegin(YYINITIAL); return Parser.GROUP_CLOSE; }
-<IN_GROUP>{PROPERTY_NAME} { yyparser.yylval = new ParserVal(yytext()); return Parser.PROPERTY_NAME; }
-<IN_GROUP>{PROPERTY_SEPARATOR} {yybegin(IN_PROPERTY); return Parser.PROPERTY_SEPARATOR; }
-<IN_PROPERTY>{PROPERTY_VALUE} { yyparser.yylval = new ParserVal(yytext()); yybegin(IN_GROUP); return Parser.PROPERTY_VALUE; }
+<IN_GROUP>{GROUP_CLOSE} {
+    yybegin(YYINITIAL);
+    return Parser.GROUP_CLOSE;
+}
+
+<IN_GROUP>{PROPERTY_NAME} { 
+    yyparser.yylval = new ParserVal(yytext()); 
+    return Parser.PROPERTY_NAME; 
+}
+
+<IN_GROUP>{PROPERTY_SEPARATOR} {
+    yybegin(IN_PROPERTY); 
+    return Parser.PROPERTY_SEPARATOR; 
+}
+
+<IN_PROPERTY>{PROPERTY_VALUE} { 
+    yyparser.yylval = new ParserVal(yytext()); 
+    yybegin(IN_GROUP); 
+    return Parser.PROPERTY_VALUE; 
+}
 
 [ \t]+ { }
 

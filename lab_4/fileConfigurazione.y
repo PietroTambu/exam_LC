@@ -16,7 +16,6 @@ groups      : group { $$ = $1; }
             ;
 
 group       : GROUP_NAME GROUP_OPEN line properties GROUP_CLOSE line { $$ = "[" + $1 + "]" + $3 + $4 + $6; }
-            ;
 
 line        : NL { $$ = System.lineSeparator(); }
             | line NL { $$ = $1 + System.lineSeparator(); }
@@ -26,7 +25,7 @@ properties  : property line { $$ = $1 + $2; }
             | property line properties { $$ = $1 + $2 + $3; }
             ;
 
-property    : PROPERTY_NAME PROPERTY_SEPARATOR PROPERTY_VALUE { $$ = $1.trim() + " = " + $3; }
+property    : PROPERTY_NAME PROPERTY_SEPARATOR PROPERTY_VALUE { $$ = $1.trim() + "=" + $3; }
             ;
 
 %%

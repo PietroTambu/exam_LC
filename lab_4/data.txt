@@ -1,4 +1,14 @@
-nome_gruppo_1: {
-nome_proprietà_1: valore_proprietà_1
-nome_proprietà_2: valore_proprietà_2
+nome_gruppo_2: {
+nome_proprieta_x: valore_proprieta_x
+nome_proprieta_y: valore_proprieta_y
+};
+
+nome_gruppo_2: {
+nome_proprieta_x: valore_proprieta_x
+nome_proprieta_y: valore_proprieta_y
+};
+
+host: {
+    ip: 10.0.2.2
+    name: emulator_locahost
 };
