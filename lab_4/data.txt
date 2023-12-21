@@ -2,7 +2,6 @@ nome_gruppo_2: {
     nome_proprieta_x: valore_proprieta_x
     nome_proprieta_y: valore_proprieta_y
 };
-
 host: {
     ip: 10.0.2.2
     name: adv_emulator_locahost_bridge
